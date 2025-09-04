@@ -1,0 +1,72 @@
+***UPDATED 8/30/24!!***
+
+* Programming is done via the Microchip Studio application, which can be found
+here:
+
+https://www.microchip.com/en-us/tools-resources/develop/microchip-studio
+
+* Download a dummy Microchip Studio application for the Tiny45 - this is just
+so all the settings are set up properly. Unzip somewhere. Only needs
+to be done once:
+
+http://www.synthcom.com/~nb/modbatt-CellCPU.zip
+
+* Bring up Microchip Studio. Look for a file called XC8Application1.atsln.
+Click "File" then "Open Project/Solution". If this was already done once,
+it can be skipped over.
+
+* Click on "Tool", and select the Atmel-ICE (plus a serial #), and interface
+change to "ISP". Ensure DebugWire is not enabled!
+
+---------
+
+To program an image:
+
+* Bring up Microchip Studio, and load the XC8Application1.atsln app. 
+
+* Click "Tools", then "Device Programming"
+
+* Connect the Atmel ICE to the target Attiny45.
+
+* Ensure the tool is set to "Atmel-ICE"
+
+* Ensure the Device is set to Attiny45
+
+* Ensure the interface is ISP
+
+* Click "Apply" next to "ISP"
+
+* Turn on the target. There should be one red and one green LED on the
+AVR ICE with one shut off.
+
+* Click "Read" under "Device signature". It should return 0x1E9206.  Check Target Voltage. You should see the voltage provided
+to the target, like 3.3V. If it reads low, it's possible the 6 pin
+connector is on backwards.
+
+* Click "Production File", navigate to the file CellCPU.elf, ensuring it is the latest version (8/30/24 or later!)
+
+* Check the "Flash" and "Fuses" checkboxes.  "Erase memory before programming" and "Verify programmed content" should also be checked.
+
+* Click "Program".  It should successfully verify flash but will FAIL to verify fuses, this is normal.
+
+
+FUSES BELOW ARE FOR REFERENCE ONLY, DO NOT USE!
+----------------------------------------------------------------------
+
+EXTENDED.SELFPRGEN				Unchecked
+HIGH.RSTDSBL					Checked
+HIGH.DWEN						Unchecked
+HIGH.SPEN						Unchecked
+HIGH.WDTON						Unchecked
+HIGH.EESAVE						Checked 
+HIGH.BODLEVEL					Brown-out decetion at VCC=1.8V
+LOW.CKDIV8						Checked
+LOW.CKOUT						Unchecked
+LOW SUT_CKSEL					Int. RC Osc. 8 Mhz Start-up time PWRDWN/RESET:6 CK/14 CK + 0ms
+
+If selected properly, the final fuse register should look like this:
+
+EXTENDED						0xff
+HIGH							0x76
+LOW								0x42
+
