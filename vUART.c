@@ -76,17 +76,6 @@ static uint8_t sg_u8dn_txBitCount;
 static uint8_t sg_u8dn_txDataByte;
 static bool sg_bdn_txMoreAvailable;
 
-// Edge correction tracking variables for upstream (cell_up_rx)
-static volatile int8_t sg_minTimingError_up = 127;      // Min timing error seen
-static volatile int8_t sg_maxTimingError_up = -128;     // Max timing error seen  
-static volatile uint16_t sg_edgeCorrections_up = 0;     // Count of corrections
-static volatile uint8_t sg_lastEdgeTimer_up = 0;        // Timer value at last edge
-
-// Edge correction tracking variables for downstream (cell_dn_rx)
-static volatile int8_t sg_minTimingError_dn = 127;      // Min timing error seen
-static volatile int8_t sg_maxTimingError_dn = -128;     // Max timing error seen
-static volatile uint16_t sg_edgeCorrections_dn = 0;     // Count of corrections
-static volatile uint8_t sg_lastEdgeTimer_dn = 0;        // Timer value at last edge
 
 // Edge correction configuration
 #define VUART_BIT_TICK_OFFSET 6  // Timer offset to account for ISR latency
@@ -117,26 +106,13 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 			sg_ecell_up_rxState = ESTATE_RX_DATA;
 			sg_bcell_up_rxPriorState = true;
 			sg_u8Cell_up_rxBitCount = 0;
-			sg_lastEdgeTimer_up = u8CurrentTimer;
 		}
 		// Edge correction during byte reception
 		else if (ESTATE_RX_DATA == sg_ecell_up_rxState)
 		{
-			// We got an edge during byte reception - use for timing correction
-			// Calculate timing error from expected mid-bit position (for diagnostics only)
-			int8_t timingError = (int8_t)(u8CurrentTimer - sg_lastEdgeTimer_up) - VUART_BIT_TICKS;
-			
-			// Track min/max for diagnostics
-			if (timingError < sg_minTimingError_up) sg_minTimingError_up = timingError;
-			if (timingError > sg_maxTimingError_up) sg_maxTimingError_up = timingError;
-			
-			// ALWAYS resync: edge just occurred, so set timer to fire at mid-bit
+			// Edge just occurred, resync timer to fire at mid-bit
 			// Subtract tick offset to account for timer interrupt latency
 			OCR0A = (uint8_t)(u8CurrentTimer + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
-			
-			// Increment correction counter
-			sg_edgeCorrections_up++;
-			sg_lastEdgeTimer_up = u8CurrentTimer;
 		}
 	}
 	
@@ -169,26 +145,13 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 			sg_ecell_dn_rxState = ESTATE_RX_DATA;
 			sg_bcell_dn_rxPriorState = true;
 			sg_u8Cell_dn_rxBitCount = 0;
-			sg_lastEdgeTimer_dn = u8CurrentTimer;
 		}
 		// Edge correction during byte reception
 		else if (ESTATE_RX_DATA == sg_ecell_dn_rxState)
 		{
-			// We got an edge during byte reception - use for timing correction
-			// Calculate timing error from expected mid-bit position (for diagnostics only)
-			int8_t timingError = (int8_t)(u8CurrentTimer - sg_lastEdgeTimer_dn) - VUART_BIT_TICKS;
-			
-			// Track min/max for diagnostics
-			if (timingError < sg_minTimingError_dn) sg_minTimingError_dn = timingError;
-			if (timingError > sg_maxTimingError_dn) sg_maxTimingError_dn = timingError;
-			
-			// ALWAYS resync: edge just occurred, so set timer to fire at mid-bit
+			// Edge just occurred, resync timer to fire at mid-bit
 			// Subtract tick offset to account for timer interrupt latency
 			OCR0B = (uint8_t)(u8CurrentTimer + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
-			
-			// Increment correction counter
-			sg_edgeCorrections_dn++;
-			sg_lastEdgeTimer_dn = u8CurrentTimer;
 		}
 	}
 }
