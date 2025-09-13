@@ -76,62 +76,143 @@ static uint8_t sg_u8dn_txBitCount;
 static uint8_t sg_u8dn_txDataByte;
 static bool sg_bdn_txMoreAvailable;
 
-// Pin change interrupt - detecting start bit
+// Edge correction tracking variables for upstream (cell_up_rx)
+static volatile int8_t sg_minTimingError_up = 127;      // Min timing error seen
+static volatile int8_t sg_maxTimingError_up = -128;     // Max timing error seen  
+static volatile uint16_t sg_edgeCorrections_up = 0;     // Count of corrections
+static volatile uint8_t sg_lastEdgeTimer_up = 0;        // Timer value at last edge
+
+// Edge correction tracking variables for downstream (cell_dn_rx)
+static volatile int8_t sg_minTimingError_dn = 127;      // Min timing error seen
+static volatile int8_t sg_maxTimingError_dn = -128;     // Max timing error seen
+static volatile uint16_t sg_edgeCorrections_dn = 0;     // Count of corrections
+static volatile uint8_t sg_lastEdgeTimer_dn = 0;        // Timer value at last edge
+
+// Edge correction configuration
+#define TIMING_TOLERANCE 3      // Only correct if error > 3 timer ticks
+#define MAX_CORRECTION 5        // Maximum correction per edge
+#define VUART_BIT_TICK_OFFSET 6  // Timer offset to account for ISR latency
+
+// Pin change interrupt - detecting start bit and edges during reception
 ISR(PCINT_VECTOR, ISR_BLOCK)
 {
 	bool bCellUpRXAsserted = IS_PIN_CELL_UP_RX_ASSERTED();
 	bool bCellDnRxAsserted = IS_PIN_CELL_DN_RX_ASSERTED();
+	uint8_t u8CurrentTimer = TIMER_COUNTER();
 
-	// If we have timers we need to start, start them at the top of the procedure	
-	// so the sample times are tighter/more consistent
-	if (bCellUpRXAsserted && sg_bcell_up_rx_Enabled &&
-		((ESTATE_IDLE == sg_ecell_up_rxState) ||
-		 (ESTATE_NEXT_BYTE == sg_ecell_up_rxState)))
+	// Handle cell_up_rx - both start bit and edge correction
+	if (sg_bcell_up_rx_Enabled)
 	{
-		// This causes a sampling in the middle of the waveform
-		// and accounts for code overhead.
-		TIMER_CHA_INT(VUART_BIT_TICKS);
+		// Start bit detection
+		if (bCellUpRXAsserted &&
+			((ESTATE_IDLE == sg_ecell_up_rxState) ||
+			 (ESTATE_NEXT_BYTE == sg_ecell_up_rxState)))
+		{
+			// This causes a sampling in the middle of the waveform
+			// and accounts for code overhead.
+			TIMER_CHA_INT(VUART_BIT_TICKS);
 
-		// Stop cell_up_rx interrupts
-		INT_CELL_UP_RX_DISABLE();
-		
-		// We are now receiving data
-		sg_ecell_up_rxState = ESTATE_RX_DATA;
-		sg_bcell_up_rxPriorState = true;
-		sg_u8Cell_up_rxBitCount = 0;
+			// Note: We keep interrupts ENABLED for edge detection during byte
+			// INT_CELL_UP_RX_DISABLE(); // REMOVED - keep enabled for edge correction
+			
+			// We are now receiving data
+			sg_ecell_up_rxState = ESTATE_RX_DATA;
+			sg_bcell_up_rxPriorState = true;
+			sg_u8Cell_up_rxBitCount = 0;
+			sg_lastEdgeTimer_up = u8CurrentTimer;
+		}
+		// Edge correction during byte reception
+		else if (ESTATE_RX_DATA == sg_ecell_up_rxState)
+		{
+			// We got an edge during byte reception - use for timing correction
+			// Calculate timing error from expected mid-bit position
+			int8_t timingError = (int8_t)(u8CurrentTimer - sg_lastEdgeTimer_up) - VUART_BIT_TICKS;
+			
+			// Track min/max for diagnostics
+			if (timingError < sg_minTimingError_up) sg_minTimingError_up = timingError;
+			if (timingError > sg_maxTimingError_up) sg_maxTimingError_up = timingError;
+			
+			// Apply correction if error is significant
+			if ((timingError > TIMING_TOLERANCE) || (timingError < -TIMING_TOLERANCE))
+			{
+				// Limit correction to prevent oscillation
+				if (timingError > MAX_CORRECTION) timingError = MAX_CORRECTION;
+				if (timingError < -MAX_CORRECTION) timingError = -MAX_CORRECTION;
+				
+				// Resync timer to mid-bit position
+				OCR0A = (uint8_t)(u8CurrentTimer + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
+				
+				// Increment correction counter
+				sg_edgeCorrections_up++;
+			}
+			sg_lastEdgeTimer_up = u8CurrentTimer;
+		}
 	}
 	
-	// Handle cell_dn_rx incomings
-	if ((bCellDnRxAsserted) &&
-		((ESTATE_IDLE == sg_ecell_dn_rxState) ||
-		 (ESTATE_NEXT_BYTE == sg_ecell_dn_rxState)))
+	// Handle cell_dn_rx - both start bit and edge correction
+	if ((ESTATE_IDLE == sg_ecell_dn_rxState) ||
+		(ESTATE_NEXT_BYTE == sg_ecell_dn_rxState) ||
+		(ESTATE_RX_DATA == sg_ecell_dn_rxState))
 	{
-		// This causes sampling closer to the middle of the waveform
-		// and accounts for code overhead.
-		TIMER_CHB_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS / 10));
-
-		// Stop cell_dn_rx interrupts
-		INT_CELL_DN_RX_DISABLE();
-		
-		// Only call the data start routine when it's the actual start of the initial
-		// byte, not subsequent bytes.
-		if (ESTATE_IDLE == sg_ecell_dn_rxState)
+		// Start bit detection
+		if (bCellDnRxAsserted &&
+			((ESTATE_IDLE == sg_ecell_dn_rxState) ||
+			 (ESTATE_NEXT_BYTE == sg_ecell_dn_rxState)))
 		{
-			// Falling edge on cell_dn_rx
-			Celldn_rxDataStart();
+			// This causes sampling closer to the middle of the waveform
+			// and accounts for code overhead.
+			TIMER_CHB_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS / 10));
+
+			// Note: We keep interrupts ENABLED for edge detection during byte
+			// INT_CELL_DN_RX_DISABLE(); // REMOVED - keep enabled for edge correction
+			
+			// Only call the data start routine when it's the actual start of the initial
+			// byte, not subsequent bytes.
+			if (ESTATE_IDLE == sg_ecell_dn_rxState)
+			{
+				// Falling edge on cell_dn_rx
+				Celldn_rxDataStart();
+			}
+			
+			// Set the RX data state
+			sg_ecell_dn_rxState = ESTATE_RX_DATA;
+			sg_bcell_dn_rxPriorState = true;
+			sg_u8Cell_dn_rxBitCount = 0;
+			sg_lastEdgeTimer_dn = u8CurrentTimer;
 		}
-		
-		// Set the RX data state
-		sg_ecell_dn_rxState = ESTATE_RX_DATA;
-		sg_bcell_dn_rxPriorState = true;
-		sg_u8Cell_dn_rxBitCount = 0;
+		// Edge correction during byte reception
+		else if (ESTATE_RX_DATA == sg_ecell_dn_rxState)
+		{
+			// We got an edge during byte reception - use for timing correction
+			// Calculate timing error from expected mid-bit position
+			int8_t timingError = (int8_t)(u8CurrentTimer - sg_lastEdgeTimer_dn) - VUART_BIT_TICKS;
+			
+			// Track min/max for diagnostics
+			if (timingError < sg_minTimingError_dn) sg_minTimingError_dn = timingError;
+			if (timingError > sg_maxTimingError_dn) sg_maxTimingError_dn = timingError;
+			
+			// Apply correction if error is significant
+			if ((timingError > TIMING_TOLERANCE) || (timingError < -TIMING_TOLERANCE))
+			{
+				// Limit correction to prevent oscillation
+				if (timingError > MAX_CORRECTION) timingError = MAX_CORRECTION;
+				if (timingError < -MAX_CORRECTION) timingError = -MAX_CORRECTION;
+				
+				// Resync timer to mid-bit position
+				OCR0B = (uint8_t)(u8CurrentTimer + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
+				
+				// Increment correction counter
+				sg_edgeCorrections_dn++;
+			}
+			sg_lastEdgeTimer_dn = u8CurrentTimer;
+		}
 	}
 }
 
 // Timer 0 compare A interrupt (bit clock) for cell_up_rx
 ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 {
-	TIMER_CHA_INT(VUART_BIT_TICKS-6);
+	TIMER_CHA_INT(VUART_BIT_TICKS-VUART_BIT_TICK_OFFSET);
 	if (ESTATE_RX_DATA == sg_ecell_up_rxState)
 	{
 		// Set the bit value for what the prior state was
@@ -295,7 +376,7 @@ ISR(TIMER_COMPB_VECTOR, ISR_BLOCK)
 {
 	bool bData;
 	
-	TIMER_CHB_INT(VUART_BIT_TICKS-6);
+	TIMER_CHB_INT(VUART_BIT_TICKS-VUART_BIT_TICK_OFFSET);
 		
 	// Set the bit value for what the prior state was
 	if (sg_bcell_dn_rxPriorState)
