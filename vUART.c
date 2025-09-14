@@ -95,9 +95,9 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 			((ESTATE_IDLE == sg_ecell_up_rxState) ||
 			 (ESTATE_NEXT_BYTE == sg_ecell_up_rxState)))
 		{
-			// This causes a sampling in the middle of the waveform
-			// and accounts for code overhead.
-			TIMER_CHA_INT(VUART_BIT_TICKS);
+			// Set timer to sample at middle of first data bit
+			// Start bit + half of first bit - ISR response overhead
+			TIMER_CHA_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
 
 			// Note: We keep interrupts ENABLED for edge detection during byte
 			// INT_CELL_UP_RX_DISABLE(); // REMOVED - keep enabled for edge correction
@@ -126,9 +126,9 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 			((ESTATE_IDLE == sg_ecell_dn_rxState) ||
 			 (ESTATE_NEXT_BYTE == sg_ecell_dn_rxState)))
 		{
-			// This causes sampling closer to the middle of the waveform
-			// and accounts for code overhead.
-			TIMER_CHB_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS / 10));
+			// Set timer to sample at middle of first data bit
+			// Start bit + half of first bit - ISR response overhead
+			TIMER_CHB_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS/2) - VUART_BIT_TICK_OFFSET);
 
 			// Note: We keep interrupts ENABLED for edge detection during byte
 			// INT_CELL_DN_RX_DISABLE(); // REMOVED - keep enabled for edge correction
