@@ -8,7 +8,7 @@
  */
 
 // Uncomment to use fake cell data for testing
-#define FAKE_CELL_DATA
+// #define FAKE_CELL_DATA
 
 #include "Platform.h"
 #include "I2c.h"
