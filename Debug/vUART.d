@@ -16,7 +16,7 @@ vUART.d vUART.o: .././vUART.c .././Platform.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h \
  c:\program\ files\microchip\xc8\v2.36\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h \
- .././vUART.h .././main.h
+ .././../Shared/Shared.h .././vUART.h .././main.h
 
 .././Platform.h:
 
@@ -53,6 +53,8 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h:
 c:\program\ files\microchip\xc8\v2.36\avr\lib\gcc\avr\5.4.0\include\stdbool.h:
 
 c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h:
+
+.././../Shared/Shared.h:
 
 .././vUART.h:
 

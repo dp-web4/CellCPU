@@ -13,8 +13,6 @@
 // CPU speed (in hz) - internal clock
 #define CPU_SPEED						8000000
 
-// Virtual UART timing - How many timer ticks is a single data/start/stop bit? This is the baud rate in ticks.
-#define VUART_BIT_TICKS					50
 
 // APIs to handle cell_up_rx->cell_dn_tx
 extern bool Celldn_txDataAvailable(void);

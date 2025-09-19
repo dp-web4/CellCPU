@@ -16,8 +16,8 @@ main.d main.o: .././main.c .././Platform.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h \
  c:\program\ files\microchip\xc8\v2.36\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h \
- .././I2c.h .././mcp9843.h .././adc.h .././main.h .././vUART.h \
- .././../Shared/Shared.h \
+ .././I2c.h .././mcp9843.h .././adc.h .././main.h .././../Shared/Shared.h \
+ .././vUART.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\sleep.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\wdt.h
 
@@ -65,9 +65,9 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h:
 
 .././main.h:
 
-.././vUART.h:
-
 .././../Shared/Shared.h:
+
+.././vUART.h:
 
 c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\sleep.h:
 

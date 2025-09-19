@@ -43,6 +43,7 @@
  */
 
 #include "Platform.h"
+#include "../Shared/Shared.h"
 #include "vUART.h"
 #include "main.h"
 

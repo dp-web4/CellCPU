@@ -7,13 +7,16 @@
  * rights reserved
  */
 
+// Uncomment to use fake cell data for testing
+#define FAKE_CELL_DATA
+
 #include "Platform.h"
 #include "I2c.h"
 #include "mcp9843.h"
 #include "adc.h"
 #include "main.h"
-#include "vUART.h"
 #include "../Shared/Shared.h"
+#include "vUART.h"
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 

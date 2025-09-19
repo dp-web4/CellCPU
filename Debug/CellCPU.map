@@ -397,15 +397,15 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x2051
+.debug_info     0x0000000000000000     0x201b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x420 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.10.348/xc8/avr/lib/avr25/memx-const/crtattiny45.o
- .debug_info    0x0000000000000420      0x25a adc.o
- .debug_info    0x000000000000067a      0x232 Fuses.o
- .debug_info    0x00000000000008ac      0x4bd I2c.o
- .debug_info    0x0000000000000d69      0x824 main.o
- .debug_info    0x000000000000158d      0x458 mcp9843.o
- .debug_info    0x00000000000019e5      0x66c vUART.o
+ .debug_info    0x0000000000000420      0x24a adc.o
+ .debug_info    0x000000000000066a      0x232 Fuses.o
+ .debug_info    0x000000000000089c      0x4ad I2c.o
+ .debug_info    0x0000000000000d49      0x814 main.o
+ .debug_info    0x000000000000155d      0x448 mcp9843.o
+ .debug_info    0x00000000000019a5      0x676 vUART.o
 
 .debug_abbrev   0x0000000000000000      0x945
  *(.debug_abbrev)
@@ -417,7 +417,7 @@ END GROUP
  .debug_abbrev  0x0000000000000710       0xf6 mcp9843.o
  .debug_abbrev  0x0000000000000806      0x13f vUART.o
 
-.debug_line     0x0000000000000000      0xd78
+.debug_line     0x0000000000000000      0xdaa
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000       0xf5 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.10.348/xc8/avr/lib/avr25/memx-const/crtattiny45.o
  .debug_line    0x00000000000000f5       0xb8 adc.o
@@ -425,7 +425,7 @@ END GROUP
  .debug_line    0x000000000000021a      0x282 I2c.o
  .debug_line    0x000000000000049c      0x3b3 main.o
  .debug_line    0x000000000000084f      0x13b mcp9843.o
- .debug_line    0x000000000000098a      0x3ee vUART.o
+ .debug_line    0x000000000000098a      0x420 vUART.o
 
 .debug_frame    0x0000000000000000      0x48c
  *(.debug_frame)
@@ -445,12 +445,12 @@ END GROUP
  .debug_str     0x00000000000001f0       0x31 mcp9843.o
  .debug_str     0x0000000000000221       0x5f vUART.o
 
-.debug_loc      0x0000000000000000      0xa5c
+.debug_loc      0x0000000000000000      0xa96
  *(.debug_loc)
  .debug_loc     0x0000000000000000      0x1e1 I2c.o
  .debug_loc     0x00000000000001e1      0x36b main.o
  .debug_loc     0x000000000000054c      0x1cd mcp9843.o
- .debug_loc     0x0000000000000719      0x343 vUART.o
+ .debug_loc     0x0000000000000719      0x37d vUART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -490,87 +490,87 @@ LOAD data_init
 .bss            0x0000000000800060        0xf
  .bss           0x0000000000800060        0xf vUART.o
 
-.text           0x0000000000000074      0x424
- .text          0x0000000000000074      0x424 vUART.o
+.text           0x0000000000000074      0x46e
+ .text          0x0000000000000074      0x46e vUART.o
                 0x0000000000000074                __vector_2
-                0x0000000000000164                __vector_11
-                0x0000000000000238                vUARTStartcell_dn_tx
-                0x000000000000028c                __vector_10
-                0x0000000000000430                vUARTPinInit
-                0x000000000000046e                vUARTIscell_dn_rxActive
-                0x0000000000000482                vUARTInitTransmit
-                0x000000000000048a                vUARTInitReceive
+                0x00000000000001ae                __vector_11
+                0x0000000000000282                vUARTStartcell_dn_tx
+                0x00000000000002d6                __vector_10
+                0x000000000000047a                vUARTPinInit
+                0x00000000000004b8                vUARTIscell_dn_rxActive
+                0x00000000000004cc                vUARTInitTransmit
+                0x00000000000004d4                vUARTInitReceive
 
-.text           0x0000000000000498      0x314
- .text          0x0000000000000498      0x314 main.o
-                0x0000000000000498                Delay
-                0x00000000000004b6                Celldn_txDataAvailable
-                0x00000000000004c6                Celldn_txDataGet
-                0x0000000000000508                Celldn_txDataReset
-                0x000000000000050e                Celldn_txTransmitStart
-                0x0000000000000514                Celldn_rxDataStart
-                0x0000000000000522                Celldn_rxDataBit
-                0x0000000000000588                main
-                0x0000000000000728                __vector_1
-                0x0000000000000734                __vector_4
-                0x0000000000000740                __vector_5
-                0x000000000000074c                __vector_13
-                0x0000000000000758                __vector_14
-                0x0000000000000764                __vector_6
-                0x0000000000000770                __vector_7
-                0x000000000000077c                INT1_vect
-                0x0000000000000788                TIMER0_CAPT_vect
-                0x0000000000000794                TIMER1_COMPD_vect
-                0x00000000000007a0                FAULT_PROTECTION_vect
+.text           0x00000000000004e2      0x314
+ .text          0x00000000000004e2      0x314 main.o
+                0x00000000000004e2                Delay
+                0x0000000000000500                Celldn_txDataAvailable
+                0x0000000000000510                Celldn_txDataGet
+                0x0000000000000552                Celldn_txDataReset
+                0x0000000000000558                Celldn_txTransmitStart
+                0x000000000000055e                Celldn_rxDataStart
+                0x000000000000056c                Celldn_rxDataBit
+                0x00000000000005d2                main
+                0x0000000000000772                __vector_1
+                0x000000000000077e                __vector_4
+                0x000000000000078a                __vector_5
+                0x0000000000000796                __vector_13
+                0x00000000000007a2                __vector_14
+                0x00000000000007ae                __vector_6
+                0x00000000000007ba                __vector_7
+                0x00000000000007c6                INT1_vect
+                0x00000000000007d2                TIMER0_CAPT_vect
+                0x00000000000007de                TIMER1_COMPD_vect
+                0x00000000000007ea                FAULT_PROTECTION_vect
 
-.text           0x00000000000007ac      0x178
- .text          0x00000000000007ac      0x178 I2c.o
-                0x00000000000007bc                I2CStart
-                0x00000000000007e4                I2CStop
-                0x0000000000000806                I2CTxByte
-                0x000000000000086a                I2CRxByte
-                0x00000000000008dc                I2CSetup
-                0x0000000000000902                I2CStartTransaction
+.text           0x00000000000007f6      0x178
+ .text          0x00000000000007f6      0x178 I2c.o
+                0x0000000000000806                I2CStart
+                0x000000000000082e                I2CStop
+                0x0000000000000850                I2CTxByte
+                0x00000000000008b4                I2CRxByte
+                0x0000000000000926                I2CSetup
+                0x000000000000094c                I2CStartTransaction
 
-.text           0x0000000000000924       0xb8
- .text          0x0000000000000924       0xb8 mcp9843.o
-                0x0000000000000938                MCP9843SetEventPin
-                0x0000000000000994                MCP9843ReadTemperature
+.text           0x000000000000096e       0xb8
+ .text          0x000000000000096e       0xb8 mcp9843.o
+                0x0000000000000982                MCP9843SetEventPin
+                0x00000000000009de                MCP9843ReadTemperature
 
-.text           0x00000000000009dc       0x24
- .text          0x00000000000009dc       0x24 adc.o
-                0x00000000000009dc                ADCRead
+.text           0x0000000000000a26       0x24
+ .text          0x0000000000000a26       0x24 adc.o
+                0x0000000000000a26                ADCRead
 
-.text.exit      0x0000000000000a00        0xe
- .text.exit     0x0000000000000a00        0xe c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
-                0x0000000000000a00                exit
+.text.exit      0x0000000000000a4a        0xe
+ .text.exit     0x0000000000000a4a        0xe c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
+                0x0000000000000a4a                exit
 
-.text           0x0000000000000a0e        0x2
- .text          0x0000000000000a0e        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.10.348/xc8/avr/lib/avr25/memx-const/crtattiny45.o
-                0x0000000000000a0e                __bad_interrupt
-                0x0000000000000a0e                __vector_3
-                0x0000000000000a0e                __vector_9
-                0x0000000000000a0e                __vector_8
-                0x0000000000000a0e                __vector_12
+.text           0x0000000000000a58        0x2
+ .text          0x0000000000000a58        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.10.348/xc8/avr/lib/avr25/memx-const/crtattiny45.o
+                0x0000000000000a58                __bad_interrupt
+                0x0000000000000a58                __vector_3
+                0x0000000000000a58                __vector_9
+                0x0000000000000a58                __vector_8
+                0x0000000000000a58                __vector_12
 
 .text.__dummy_fini
-                0x0000000000000a10        0x2
+                0x0000000000000a5a        0x2
  .text.__dummy_fini
-                0x0000000000000a10        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
-                0x0000000000000a10                _fini
+                0x0000000000000a5a        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
+                0x0000000000000a5a                _fini
 
 .text.__dummy_funcs_on_exit
-                0x0000000000000a12        0x2
+                0x0000000000000a5c        0x2
  .text.__dummy_funcs_on_exit
-                0x0000000000000a12        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
-                0x0000000000000a12                __funcs_on_exit
+                0x0000000000000a5c        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
+                0x0000000000000a5c                __funcs_on_exit
 
 .text.__dummy_simulator_exit
-                0x0000000000000a14        0x2
+                0x0000000000000a5e        0x2
  .text.__dummy_simulator_exit
-                0x0000000000000a14        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
-                0x0000000000000a14                __simulator_exit
+                0x0000000000000a5e        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(exit.o)
+                0x0000000000000a5e                __simulator_exit
 
-.text._Exit     0x0000000000000a16        0x2
- .text._Exit    0x0000000000000a16        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(_Exit.o)
-                0x0000000000000a16                _Exit
+.text._Exit     0x0000000000000a60        0x2
+ .text._Exit    0x0000000000000a60        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25/memx-const\libc.a(_Exit.o)
+                0x0000000000000a60                _Exit
