@@ -1,6 +1,6 @@
 # Claude Context for CellCPU
 
-## Edge Sync Revert (December 2024)
+## Edge Sync Revert (September 2025)
 
 **IMPORTANT**: Edge sync for VUART was attempted but had to be reverted.
 

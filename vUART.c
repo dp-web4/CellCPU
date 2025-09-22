@@ -79,7 +79,7 @@ static bool sg_bdn_txMoreAvailable;
 
 
 // Pin change interrupt - detecting start bit
-// NOTE: Edge sync was removed (12/2024) because it broke relay timing.
+// NOTE: Edge sync was removed (09/2025) because it broke relay timing.
 // While edge correction improved local reception, it caused variable bit widths
 // in the relayed signal, corrupting communication to downstream cells.
 // Future enhancement: Track drift without adjusting timer to maintain relay integrity.
