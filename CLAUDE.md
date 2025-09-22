@@ -1,5 +1,30 @@
 # Claude Context for CellCPU
 
+## Edge Sync Revert (December 2024)
+
+**IMPORTANT**: Edge sync for VUART was attempted but had to be reverted.
+
+### What Was Tried
+- Added edge-triggered timing correction during VUART reception
+- Kept interrupts enabled during byte reception to detect edges
+- Adjusted timer on each edge to resync to middle of bit
+
+### Why It Failed
+- VUART uses real-time bit relay (1-bit pipeline delay)
+- Adjusting the timer for better sampling also changed OUTPUT bit timing
+- This caused variable bit widths in the relayed signal
+- Downstream cells saw corrupted timing, breaking communication
+
+### Current State
+- Reverted to original fixed-timing approach
+- Accepts occasional bit errors but maintains consistent relay timing
+- See EDGE_SYNC_ANALYSIS.md for detailed analysis
+
+### Future Enhancement Ideas
+- Track timing drift without adjusting timer
+- Use drift info to optimize sampling within fixed intervals
+- Consider separate timers for RX sampling vs TX generation
+
 ## Project Context System
 
 **IMPORTANT**: A comprehensive context system exists at `/mnt/c/projects/ai-agents/misc/context-system/`
