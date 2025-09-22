@@ -43,7 +43,6 @@
  */
 
 #include "Platform.h"
-#include "../Shared/Shared.h"
 #include "vUART.h"
 #include "main.h"
 
@@ -77,18 +76,13 @@ static uint8_t sg_u8dn_txBitCount;
 static uint8_t sg_u8dn_txDataByte;
 static bool sg_bdn_txMoreAvailable;
 
-
 // Pin change interrupt - detecting start bit
-// NOTE: Edge sync was removed (09/2025) because it broke relay timing.
-// While edge correction improved local reception, it caused variable bit widths
-// in the relayed signal, corrupting communication to downstream cells.
-// Future enhancement: Track drift without adjusting timer to maintain relay integrity.
 ISR(PCINT_VECTOR, ISR_BLOCK)
 {
 	bool bCellUpRXAsserted = IS_PIN_CELL_UP_RX_ASSERTED();
 	bool bCellDnRxAsserted = IS_PIN_CELL_DN_RX_ASSERTED();
 
-	// If we have timers we need to start, start them at the top of the procedure
+	// If we have timers we need to start, start them at the top of the procedure	
 	// so the sample times are tighter/more consistent
 	if (bCellUpRXAsserted && sg_bcell_up_rx_Enabled &&
 		((ESTATE_IDLE == sg_ecell_up_rxState) ||
@@ -100,13 +94,13 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 
 		// Stop cell_up_rx interrupts
 		INT_CELL_UP_RX_DISABLE();
-
+		
 		// We are now receiving data
 		sg_ecell_up_rxState = ESTATE_RX_DATA;
 		sg_bcell_up_rxPriorState = true;
 		sg_u8Cell_up_rxBitCount = 0;
 	}
-
+	
 	// Handle cell_dn_rx incomings
 	if ((bCellDnRxAsserted) &&
 		((ESTATE_IDLE == sg_ecell_dn_rxState) ||
@@ -118,7 +112,7 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 
 		// Stop cell_dn_rx interrupts
 		INT_CELL_DN_RX_DISABLE();
-
+		
 		// Only call the data start routine when it's the actual start of the initial
 		// byte, not subsequent bytes.
 		if (ESTATE_IDLE == sg_ecell_dn_rxState)
@@ -126,7 +120,7 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 			// Falling edge on cell_dn_rx
 			Celldn_rxDataStart();
 		}
-
+		
 		// Set the RX data state
 		sg_ecell_dn_rxState = ESTATE_RX_DATA;
 		sg_bcell_dn_rxPriorState = true;
@@ -300,7 +294,7 @@ ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 ISR(TIMER_COMPB_VECTOR, ISR_BLOCK)
 {
 	bool bData;
-
+	
 	TIMER_CHB_INT(VUART_BIT_TICKS-6);
 		
 	// Set the bit value for what the prior state was
