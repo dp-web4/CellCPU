@@ -45,6 +45,7 @@
 #include "Platform.h"
 #include "vUART.h"
 #include "main.h"
+#include "../Shared/Shared.h"
 
 // States for the receive state machine
 typedef enum
@@ -90,7 +91,7 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 	{
 		// This causes a sampling in the middle of the waveform
 		// and accounts for code overhead.
-		TIMER_CHA_INT(VUART_BIT_TICKS);
+		TIMER_CHA_INT(VUART_BIT_TICKS + VUART_SAMPLE_OFFSET);
 
 		// Stop cell_up_rx interrupts
 		INT_CELL_UP_RX_DISABLE();
@@ -108,7 +109,7 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 	{
 		// This causes sampling closer to the middle of the waveform
 		// and accounts for code overhead.
-		TIMER_CHB_INT(VUART_BIT_TICKS + (VUART_BIT_TICKS / 10));
+		TIMER_CHB_INT(VUART_BIT_TICKS + VUART_SAMPLE_OFFSET);
 
 		// Stop cell_dn_rx interrupts
 		INT_CELL_DN_RX_DISABLE();
@@ -131,7 +132,7 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 // Timer 0 compare A interrupt (bit clock) for cell_up_rx
 ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 {
-	TIMER_CHA_INT(VUART_BIT_TICKS-6);
+	TIMER_CHA_INT(VUART_BIT_TICKS-VUART_ISR_OVERHEAD);  // set this at the start to be as consistent as possible
 	if (ESTATE_RX_DATA == sg_ecell_up_rxState)
 	{
 		// Set the bit value for what the prior state was
@@ -295,7 +296,7 @@ ISR(TIMER_COMPB_VECTOR, ISR_BLOCK)
 {
 	bool bData;
 	
-	TIMER_CHB_INT(VUART_BIT_TICKS-6);
+	TIMER_CHB_INT(VUART_BIT_TICKS-VUART_ISR_OVERHEAD);  // set this at the start to be as consistent as possible
 		
 	// Set the bit value for what the prior state was
 	if (sg_bcell_dn_rxPriorState)
