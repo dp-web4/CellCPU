@@ -15,7 +15,7 @@ The CellCPU is a **production-ready** foundational component of ModBatt's hierar
 - **Temperature Sensor**: MCP9843 precision digital sensor
 - **Communication**: Virtual UART at 20kbps in daisy-chain topology
 - **Power Consumption**: <1mA typical operation
-- **Scalability**: Up to 94 CellCPUs per ModuleCPU
+- **Scalability**: Up to 128 CellCPUs per ModuleCPU
 
 ## Web4 Ecosystem Context
 
@@ -221,7 +221,7 @@ System Operation:
 ### 📡 Communication
 - **Protocol**: Custom serial over Virtual UART
 - **Speed**: 20kbps (50μs bit time)
-- **Topology**: Daisy-chain up to 94 cells
+- **Topology**: Daisy-chain up to 128 cells
 - **Latency**: <5ms per cell response time
 
 ### ⚡ Control & Safety
@@ -247,7 +247,7 @@ Vehicle Control Unit (VCU)
     ↓ CAN Bus
 Pack Controller (STM32WB55)
     ↓ CAN Bus
-ModuleCPU (ATmega64M1) ←→ Up to 94 × CellCPU (ATtiny45)
+ModuleCPU (ATmega64M1) ←→ Up to 128 × CellCPU (ATtiny45)
     ↓                              ↓
 Battery Module                Li-ion Cells
 ```

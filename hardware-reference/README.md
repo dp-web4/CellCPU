@@ -136,7 +136,7 @@ These reference designs demonstrate:
 - **Cell Controller**: ATtiny45-based autonomous controller per cell
 - **Temperature Sensing**: MCP9843 I²C temperature sensor integration
 - **Virtual UART**: Software-based serial communication at 20kbps
-- **Daisy-Chain Topology**: Up to 94 cells in series connection
+- **Daisy-Chain Topology**: Up to 128 cells in series connection
 - **Voltage Monitoring**: Per-cell voltage measurement architecture
 - **Relay Control**: Cell bypass/isolation relay interface
 
