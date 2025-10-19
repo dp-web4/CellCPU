@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "CellCPU: Autonomous Cell-Level Battery Management Controller"
+abstract: "ATtiny45-based autonomous cell controller for distributed battery management. Implements cell-level monitoring, balancing, and hierarchical communication in a 4KB flash footprint. Demonstrates distributed intelligence principles in resource-constrained embedded hardware."
+authors:
+  - family-names: "Palatov"
+    given-names: "Dennis"
+    orcid: "https://orcid.org/0009-0006-5510-6445"
+    affiliation: "Modular Battery Technologies, Inc."
+repository-code: "https://github.com/dp-web4/CellCPU"
+url: "https://github.com/dp-web4/CellCPU"
+keywords:
+  - battery-management-system
+  - bms
+  - embedded-systems
+  - attiny45
+  - avr
+  - cell-monitoring
+  - distributed-intelligence
+  - hierarchical-control
+  - modbatt
+  - battery
+  - lithium-ion
+  - balancing
+  - daisy-chain
+  - virtual-uart
+  - autonomous-control
+  - web4
+  - synchronism
+  - iot
+  - electric-vehicle
+  - energy-storage
+license: AGPL-3.0-or-later
+license-url: "https://github.com/dp-web4/CellCPU/blob/main/LICENSE"
+version: "1.0.0-oss"
+date-released: "2025-10-19"
+references:
+  - type: software
+    title: "Web4: Trust-Native Internet Architecture"
+    repository-code: "https://github.com/dp-web4/web4"
+  - type: software
+    title: "Synchronism Framework"
+    repository-code: "https://github.com/dp-web4/Synchronism"
+  - type: software
+    title: "ModuleCPU: Module-Level Battery Management"
+    repository-code: "https://github.com/dp-web4/ModuleCPU"
+  - type: software
+    title: "Pack-Controller-EEPROM: Pack-Level Orchestration"
+    repository-code: "https://github.com/dp-web4/Pack-Controller-EEPROM"
+identifiers:
+  - type: url
+    value: "https://github.com/dp-web4/CellCPU"
+    description: "GitHub Repository"
+  - type: other
+    value: "US11380942B1"
+    description: "US Patent 11,380,942: Distributed battery management with autonomous cell controllers"
+  - type: other
+    value: "US11469470B1"
+    description: "US Patent 11,469,470: Hierarchical battery management architecture"
