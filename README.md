@@ -316,4 +316,12 @@ For technical support, development questions, or collaboration opportunities:
 
 ---
 
+## Related Projects
+
+This repository can be viewed as demonstrating patterns of distributed trust and verifiable provenance in embedded systems.
+
+**Related**: [Web4](https://github.com/dp-web4/web4) (trust architecture) • [Synchronism](https://github.com/dp-web4/Synchronism) (conceptual framing)
+
+---
+
 **Note**: This documentation covers the CellCPU firmware component of the ModBatt battery management system. For complete system documentation, refer to the Pack Controller and ModuleCPU documentation.
