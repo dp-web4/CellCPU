@@ -1,0 +1,305 @@
+(footprint "SOIC-8W_5.3x5.3mm_P1.27mm"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "8-Lead Plastic Small Outline (SM) - 5.28 mm Body [SOIC] (http://ww1.microchip.com/downloads/en/PackagingSpec/00000049BQ.pdf)")
+	(tags "SOIC 1.27")
+	(property "Reference" "U51"
+		(at 4.05 4.01 0)
+		(layer "F.SilkS")
+		(uuid "91a0e6ed-1b68-477f-8603-fa88815b89d5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "ATtiny45V-10SU"
+		(at 0 3.68 0)
+		(layer "F.Fab")
+		(uuid "d6def105-707f-430e-b66e-c3be9c06c4d2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "modbatt footprints:SOIC-8W_5.3x5.3mm_P1.27mm"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "80e80300-70d7-430f-951b-39d6e676bc37")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ded2593e-3cba-4fd4-9ee2-6a12289351f3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2f43b55d-302c-4940-abbe-1dc1c1e8f631")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.75 -2.755)
+		(end -2.75 -2.55)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "945e2016-49c3-4f42-88dc-c48f32260012")
+	)
+	(fp_line
+		(start -2.75 -2.755)
+		(end 2.75 -2.755)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "38d5a4cc-4775-4493-a4a3-704e1946e840")
+	)
+	(fp_line
+		(start -2.75 -2.55)
+		(end -4.5 -2.55)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c1ed295c-247b-4711-a9c1-e8f0353ea249")
+	)
+	(fp_line
+		(start -2.75 2.755)
+		(end -2.75 2.455)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f224bbe4-fcbf-4596-90ae-0c5a325a3b42")
+	)
+	(fp_line
+		(start -2.75 2.755)
+		(end 2.75 2.755)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7c9dbcc0-36bd-426a-88ae-c6114c5cf042")
+	)
+	(fp_line
+		(start 2.75 -2.755)
+		(end 2.75 -2.455)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f0448757-5305-4ba2-928e-b95b4c753316")
+	)
+	(fp_line
+		(start 2.75 2.755)
+		(end 2.75 2.455)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a86be176-7030-430f-8b2a-e4cca5d174ec")
+	)
+	(fp_line
+		(start -4.75 -2.95)
+		(end -4.75 2.95)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9d2bd602-2115-43e8-ba3c-8a506a8a9d46")
+	)
+	(fp_line
+		(start -4.75 -2.95)
+		(end 4.75 -2.95)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "69a6480f-b256-4602-88c5-9dad3b46de54")
+	)
+	(fp_line
+		(start -4.75 2.95)
+		(end 4.75 2.95)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d58f3a2e-6d8f-4e89-806b-acf7cc6d8bd7")
+	)
+	(fp_line
+		(start 4.75 -2.95)
+		(end 4.75 2.95)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3124cdae-418e-498d-bfc0-5ea409230297")
+	)
+	(fp_line
+		(start -2.65 -1.65)
+		(end -1.65 -2.65)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "70601467-61ee-4d82-81af-dd57633b0bbe")
+	)
+	(fp_line
+		(start -2.65 2.65)
+		(end -2.65 -1.65)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0041fcf3-844d-426f-9db8-56ca3ef13574")
+	)
+	(fp_line
+		(start -1.65 -2.65)
+		(end 2.65 -2.65)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2b96022c-1452-4efd-ab8f-6074a9a98c51")
+	)
+	(fp_line
+		(start 2.65 -2.65)
+		(end 2.65 2.65)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d6a692f9-cb2a-4edc-9ab3-9b9f4c66470b")
+	)
+	(fp_line
+		(start 2.65 2.65)
+		(end -2.65 2.65)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b26e4e24-5fd0-4047-85b8-d62c694ea7ac")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "4e7dd8c8-c8ad-4b43-ad81-3ac687b179b3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -3.65 -1.905)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "d3f8f0a3-183e-44f4-9b86-1e9f6f9dbd33")
+	)
+	(pad "2" smd roundrect
+		(at -3.65 -0.635)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "42637047-6ad8-43ef-8f47-df6f41520d5c")
+	)
+	(pad "3" smd roundrect
+		(at -3.65 0.635)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "e16a518e-38d9-4b5f-964c-adea23e79bd9")
+	)
+	(pad "4" smd roundrect
+		(at -3.65 1.905)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "866ec53a-1e0d-4fca-86af-fe955e1f595c")
+	)
+	(pad "5" smd roundrect
+		(at 3.65 1.905)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "3c27d222-ebae-408d-a1ad-59fc1fd7baa0")
+	)
+	(pad "6" smd roundrect
+		(at 3.65 0.635)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "66b56722-013e-4351-8f5f-cbcef035a8ec")
+	)
+	(pad "7" smd roundrect
+		(at 3.65 -0.635)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "c7f4b8b4-4a7c-4f14-a95f-ab58691cf202")
+	)
+	(pad "8" smd roundrect
+		(at 3.65 -1.905)
+		(size 1.5 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "bf7aa829-ef69-4654-a632-6f169b3fa79d")
+	)
+	(model "${KIPRJMOD}/Library.pretty/ATTINY25-20SU.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

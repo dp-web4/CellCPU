@@ -1,0 +1,16 @@
+.ATTINY25-20SU :1 ;ATTINY25-20SU, 8 bit AVR Microcontroller 20MHz 2, 128kB, B Flash, 128B RAM, I2C SPI 8-Pin SOIC
+SOIC127P798X216-8N
+*STM IC
+*NGS
+*PLB 1="(PCINT5/'RESET'/ADC0/DW) PB5" 2="(PCINT3/XTAL1/CLKI/'OC1B'/ADC3) PB3" 3="(PCINT4/XTAL2/CLKO/OC1B/ADC2) PB4" 4="GND" 5="PB0 (MOSI/DI/SDA/AIN0/OC0A/'OC1A'/AREF/PCINT0)" 6="PB1 (MISO/DO/AIN1/OC0B/OC1A/PCINT1)" 7="PB2 (SCK/USCK/SCL/ADC1/T0/INT0/PCINT2)" 8="VCC"
+*MXP 8
+*DFN ATTINY25-20SU
+~!Mouser Part Number (556-ATTINY25-20SU)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Microchip-Technology-Atmel/ATTINY25-20SU?qs=8jWQYweyg6Ne6mWXNq20wQ%3D%3D)
+~!Manufacturer_Name (Microchip)
+~!Manufacturer_Part_Number (ATTINY25-20SU)
+~!Link Datasheet (https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/b7d776087f3438c2ffab22c1216558b5.pdf)
+~!Height (2.16mm)
+~!3D_Model (ATTINY25-20SU)
+ATTINY25-20SU
+1.1!U 2.1!U 3.1!U 4.1!U 8.1!U 7.1!U 6.1!U 5.1!U 

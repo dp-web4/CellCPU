@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'ATTINY25_20SU'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Microchip", "ATTINY25-20SU" (!) = "", "SOIC127P798X216-8N", "Small Outline Packages", "556-ATTINY25-20SU", "https://www.mouser.co.uk/ProductDetail/Microchip-Technology-Atmel/ATTINY25-20SU?qs=8jWQYweyg6Ne6mWXNq20wQ%3D%3D", "ATTINY25-20SU, 8 bit AVR Microcontroller 20MHz 2, 128kB, B Flash, 128B RAM, I2C SPI 8-Pin SOIC", "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/b7d776087f3438c2ffab22c1216558b5.pdf", "2.16 mm"
+END_PART
+
+END.

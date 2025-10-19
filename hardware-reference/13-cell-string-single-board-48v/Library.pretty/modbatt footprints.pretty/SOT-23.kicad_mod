@@ -1,0 +1,299 @@
+(footprint "SOT-23"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "SOT, 3 Pin (https://www.jedec.org/system/files/docs/to-236h.pdf variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+	(tags "SOT TO_SOT_SMD")
+	(property "Reference" "Q37"
+		(at 2.53125 -1.72 0)
+		(layer "F.SilkS")
+		(uuid "a5e2018e-6b09-4eab-a063-af665d9a6fc4")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "DMP3099L-7-HXY"
+		(at 0 2.4 0)
+		(layer "F.Fab")
+		(uuid "04debc56-b69d-4ed8-9142-0bee28cde60a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "modbatt footprints:SOT-23"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fc1a62b0-d4b3-4c25-b193-c25bcf814cb5")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" "http://toshiba.semicon-storage.com/info/docget.jsp?did=10000&prodName=SSM3J35MFV"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1c7bd695-c888-47c1-8337-85e5a9538855")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" "MOSFET Small-signal MOSFET ID -0.1A, -20V VDSS"
+		(at 82.55 34.56875 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "360f98de-1ee6-44f7-87ce-537fe4a256c7")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Height" "0.55"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ed0356dc-28ab-4869-9dda-a6ed720703a2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Name" "Toshiba"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "338f6718-7cee-43d8-8d5b-83bcdac12b68")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Part_Number" "SSM3J35MFV,L3F"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "66d6a0e8-59c5-432d-b8ea-bb77cb8e0b78")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Part Number" "757-SSM3J35MFVL3F"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "23faf013-b028-4f76-97a9-0d84ff9f82b1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Toshiba/SSM3J35MFVL3F?qs=5aG0NVq1C4yjkUr1OczzDg%3D%3D"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "61120543-3d58-4331-b583-28e04f6387c9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start 0 -1.5)
+		(end -1 -1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "df2e3843-e82c-4a2a-87c6-6d9be984bdcb")
+	)
+	(fp_line
+		(start 0 -1.5)
+		(end 0.65 -1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3cee28d5-6381-49bc-a62a-1c5023524bc3")
+	)
+	(fp_line
+		(start 0 1.5)
+		(end -0.65 1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9c905b28-c054-4dcf-ba9a-d46621ee7efc")
+	)
+	(fp_line
+		(start 0 1.5)
+		(end 0.65 1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "657c19f0-0e95-42e9-946b-9f900c863084")
+	)
+	(fp_line
+		(start -0.75 -1.7)
+		(end -0.75 1.7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6cdc4de6-ac3e-4a0d-9a4e-3918198008c9")
+	)
+	(fp_line
+		(start -0.75 1.7)
+		(end 0.75 1.7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3b9a012f-9469-4163-a9c9-564af5d28db3")
+	)
+	(fp_line
+		(start 0.75 -1.7)
+		(end -0.75 -1.7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "bf37ef7f-98c0-4f93-8c2e-63974290b05b")
+	)
+	(fp_line
+		(start 0.75 1.7)
+		(end 0.75 -1.7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "067618ee-5d83-4e10-8e7e-dc0096b6dbbe")
+	)
+	(fp_line
+		(start -0.65 -1.125)
+		(end -0.325 -1.45)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ab5db658-4506-4efb-aec6-2225383ae9f4")
+	)
+	(fp_line
+		(start -0.65 1.45)
+		(end -0.65 -1.125)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a26ddd4e-7d83-4007-9cbf-5c4d0078079f")
+	)
+	(fp_line
+		(start -0.325 -1.45)
+		(end 0.65 -1.45)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b04ec6a4-d06a-406a-af00-514bf79c35f0")
+	)
+	(fp_line
+		(start 0.65 -1.45)
+		(end 0.65 1.45)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7433d624-a565-4b2f-a555-f4f47f17e874")
+	)
+	(fp_line
+		(start 0.65 1.45)
+		(end -0.65 1.45)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7a94d524-c599-4576-9e36-666d5efb2fbc")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "95d334e7-5626-4864-966e-583408bdbe90")
+		(effects
+			(font
+				(size 0.32 0.32)
+				(thickness 0.05)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -0.9375 -0.95)
+		(size 1 0.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "f152dc8f-5bac-48b3-a909-9532d8c29d0a")
+	)
+	(pad "2" smd roundrect
+		(at -0.9375 0.95)
+		(size 1 0.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "65ab3790-af0a-4dcb-905a-5824bb4fff2e")
+	)
+	(pad "3" smd roundrect
+		(at 0.9375 0)
+		(size 1 0.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "b8a7ff6a-a0d9-4c1b-8a89-0d25046becee")
+	)
+	(model "${KICAD6_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
