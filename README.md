@@ -17,6 +17,46 @@ The CellCPU is a **production-ready** foundational component of ModBatt's hierar
 - **Power Consumption**: <1mA typical operation
 - **Scalability**: Up to 94 CellCPUs per ModuleCPU
 
+## Web4 Ecosystem Context
+
+CellCPU is the foundational layer of a **trust-native battery management system** demonstrating [Web4](https://github.com/dp-web4/web4) principles in production embedded hardware:
+
+**Philosophy**: [Synchronism](https://github.com/dp-web4/Synchronism) - Distributed intelligence and scale-based autonomy
+**Standard**: [Web4](https://github.com/dp-web4/web4) - Trust-native internet architecture with LCTs and MRH
+**Implementation**: **CellCPU** (this) → [ModuleCPU](https://github.com/dp-web4/ModuleCPU) → [Pack-Controller](https://github.com/dp-web4/Pack-Controller-EEPROM)
+
+### Web4 Integration
+
+Each CellCPU operates as an autonomous agent with:
+- **LCT Identity**: Unforgeable blockchain binding via hardware serial number
+- **Markov Blanket**: VUART interface hides internal complexity from ModuleCPU
+- **Local Intelligence**: Autonomous decision-making (balancing, error detection)
+- **Trust Tensors**: ModuleCPU tracks T3 (Talent/Training/Temperament) and V3 (Veracity/Validity/Value)
+- **Witnessed Presence**: ModuleCPU witnesses cell existence via VUART communication
+
+See [WEB4_INTEGRATION.md](WEB4_INTEGRATION.md) for complete Web4 architecture details.
+
+### Synchronism Principles
+
+CellCPU demonstrates cosmic-to-silicon philosophy:
+- **Scale-Based Autonomy**: Cell makes local decisions within module context
+- **Markov Blankets**: VUART interface defines cell's reality boundary
+- **Distributed Intelligence**: No central cell controller - intelligence emerges from hierarchy
+- **Sensor Fusion**: Temperature + voltage + time → emergent "cell health"
+- **Intent Dynamics**: Battery charge/discharge as metabolic intent propagation
+
+See [SYNCHRONISM_PRINCIPLES.md](SYNCHRONISM_PRINCIPLES.md) for philosophical depth.
+
+### Ecosystem Links
+
+- [Synchronism Whitepaper](https://github.com/dp-web4/Synchronism/blob/main/whitepaper.md) - Universal principles
+- [Web4 Standard](https://github.com/dp-web4/web4/blob/main/web4-standard/README.md) - Internet standard
+- [ModBatt Web4 Examples](https://github.com/dp-web4/web4/blob/main/docs/modbatt_implementation_examples.md) - Code walkthroughs
+
+**This is not just a battery controller - it's proof that Web4 trust architecture works in 4KB of flash memory.**
+
+---
+
 ## Documentation Structure
 
 ### 📖 Core Documentation
@@ -241,10 +281,29 @@ ModuleCPU ← CellCPU(Last) ← CellCPU(Middle) ← CellCPU(First)
 
 ## License and Patents
 
-© 2023-2024 Modular Battery Technologies, Inc.
+### Software License
 
-Protected by US Patents 11,380,942; 11,469,470; 11,575,270; others.  
-All rights reserved.
+This software is licensed under the **GNU Affero General Public License v3.0 or later** (AGPL-3.0-or-later).
+
+See [LICENSE](LICENSE) for full license text.
+See [LICENSE_SUMMARY.md](LICENSE_SUMMARY.md) for a summary of software vs. hardware licensing.
+
+### Patents
+
+Protected by US Patents:
+- **11,380,942**: Distributed battery management with autonomous cell controllers
+- **11,469,470**: Hierarchical battery management architecture
+- **11,575,270**: Related pack control systems
+
+**Patent Grant**: A limited patent grant for the software is provided under the AGPL-3.0 license scope. See [PATENTS.md](PATENTS.md) for details.
+
+**Hardware Licensing**: Separate from software. See `docs/legal/ModBatt_Product_License.pdf` for hardware manufacturing licensing.
+
+### Copyright
+
+© 2023-2025 Modular Battery Technologies, Inc.
+
+**Open Source Release**: October 2025 - Part of the Web4 trust-native ecosystem demonstration.
 
 ## Support and Contact
 
