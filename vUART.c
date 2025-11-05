@@ -144,6 +144,9 @@ ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 
 	if (ESTATE_RX_DATA == sg_ecell_up_rxState)
 	{
+		// Profiler pulse: Show when we're sampling upstream RX
+		PROF_1_ASSERT();
+
 		// Set the bit value for what the prior state was
 		if (sg_bcell_up_rxPriorState)
 		{
@@ -153,9 +156,11 @@ ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 		{
 			CELL_DN_TX_DEASSERT();
 		}
-		
+
 		sg_bcell_up_rxPriorState = IS_PIN_CELL_UP_RX_ASSERTED();
-	
+
+		PROF_1_DEASSERT();
+
 		sg_u8Cell_up_rxBitCount++;
 		
 		// Handles incoming start bit and data bits

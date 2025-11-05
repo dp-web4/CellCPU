@@ -106,8 +106,14 @@
 #define TIMER_CHA_INT_DISABLE()				TIMSK &= (uint8_t) ~(1 << OCIE0A)
 #define TIMER_CHB_INT_DISABLE()				TIMSK &= (uint8_t) ~(1 << OCIE0B)
 
-// Profiling bits (nothing on this CPU since there are no free pins for it)
-
+// Profiling bits
+// Using PB2 (I2C SDA) for profiling - safe to use during VUART RX/TX since I2C is idle
+// WARNING: Do NOT enable profiler when doing I2C operations (temperature sensor reads)
+// Uncomment to enable profiler output on PB2
+//#define PROFILER_INIT()						DDRB |= (1 << PORTB2); PORTB |= (1 << PORTB2)
+//#define PROF_1_ASSERT()						PORTB |= (1 << PORTB2)
+//#define PROF_1_DEASSERT()					PORTB &= (uint8_t) ~(1 << PORTB2)
+// Uncomment to disable profiler
 #define PROFILER_INIT()
 #define PROF_1_ASSERT()
 #define PROF_1_DEASSERT()
