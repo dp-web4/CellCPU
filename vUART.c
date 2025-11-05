@@ -83,19 +83,22 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 	bool bCellUpRXAsserted = IS_PIN_CELL_UP_RX_ASSERTED();
 	bool bCellDnRxAsserted = IS_PIN_CELL_DN_RX_ASSERTED();
 
-	// If we have timers we need to start, start them at the top of the procedure	
+	// If we have timers we need to start, start them at the top of the procedure
 	// so the sample times are tighter/more consistent
 	if (bCellUpRXAsserted && sg_bcell_up_rx_Enabled &&
 		((ESTATE_IDLE == sg_ecell_up_rxState) ||
 		 (ESTATE_NEXT_BYTE == sg_ecell_up_rxState)))
 	{
+		// Enable profiler output on PB2 (switches pin from I2C to profiler mode)
+		PROFILER_ENABLE_OUTPUT();
+
 		// This causes a sampling in the middle of the waveform
 		// and accounts for code overhead.
 		TIMER_CHA_INT(VUART_BIT_TICKS + VUART_SAMPLE_OFFSET);
 
 		// Stop cell_up_rx interrupts
 		INT_CELL_UP_RX_DISABLE();
-		
+
 		// We are now receiving data
 		sg_ecell_up_rxState = ESTATE_RX_DATA;
 		sg_bcell_up_rxPriorState = true;
@@ -202,12 +205,18 @@ ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 			{
 				// Flag that more data is coming
 				sg_ecell_up_rxState = ESTATE_NEXT_BYTE;
+
+				// Restore I2C mode between bytes (will be re-enabled when next start bit arrives)
+				PROFILER_RESTORE_I2C();
 			}
 			else
 			{
-				// Bus is now idle		
+				// Bus is now idle
 				sg_ecell_up_rxState = ESTATE_IDLE;
-				
+
+				// Restore I2C SDA mode (INPUT with pullup) before TX/I2C operations
+				PROFILER_RESTORE_I2C();
+
 				// Start transmission of our data
 				(void) vUARTStartcell_dn_tx(VUART_BIT_TICKS*3);
 			}

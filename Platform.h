@@ -107,16 +107,14 @@
 #define TIMER_CHB_INT_DISABLE()				TIMSK &= (uint8_t) ~(1 << OCIE0B)
 
 // Profiling bits
-// Using PB2 (I2C SDA) for profiling - safe to use during VUART RX/TX since I2C is idle
-// WARNING: Do NOT enable profiler when doing I2C operations (temperature sensor reads)
-// Uncomment to enable profiler output on PB2
-//#define PROFILER_INIT()						DDRB |= (1 << PORTB2); PORTB |= (1 << PORTB2)
-//#define PROF_1_ASSERT()						PORTB |= (1 << PORTB2)
-//#define PROF_1_DEASSERT()					PORTB &= (uint8_t) ~(1 << PORTB2)
-// Uncomment to disable profiler
-#define PROFILER_INIT()
-#define PROF_1_ASSERT()
-#define PROF_1_DEASSERT()
+// Using PB2 (I2C SDA) for profiling during VUART RX operations
+// Pin is automatically switched between profiler (OUTPUT) and I2C (INPUT) modes
+// by PROFILER_ENABLE_OUTPUT() / PROFILER_RESTORE_I2C() in vUART.c
+#define PROFILER_INIT()						// No-op, pin configured on-demand
+#define PROFILER_ENABLE_OUTPUT()			DDRB |= (1 << PORTB2)				// Configure PB2 as OUTPUT for profiler
+#define PROFILER_RESTORE_I2C()				DDRB &= (uint8_t) ~(1 << PORTB2); PORTB |= (1 << PORTB2)	// Return to I2C SDA (INPUT with pullup)
+#define PROF_1_ASSERT()						PORTB |= (1 << PORTB2)
+#define PROF_1_DEASSERT()					PORTB &= (uint8_t) ~(1 << PORTB2)
 #define PROF_2_ASSERT()
 #define PROF_2_DEASSERT()
 
@@ -206,16 +204,14 @@
 #define TIMER_CHB_INT_DISABLE()				TIMSK &= (uint8_t) ~(1 << OCIE0B)
 
 // Profiling bits
-
-//#define PROFILER_INIT()					DDRA |= (1 << PORTA1) | (1 << PORTA2); PORTA |=(1 << PORTA1) | (1 << PORTA2);
-//#define PROF_1_ASSERT()					PORTA |= (1 << PORTA1)
-//#define PROF_1_DEASSERT()					PORTA &= (uint8_t) ~(1 << PORTA1)
-//#define PROF_2_ASSERT()					PORTA |= (1 << PORTA2)
-//#define PROF_2_DEASSERT()					PORTA &= (uint8_t) ~(1 << PORTA2)
-
-#define PROFILER_INIT()
-#define PROF_1_ASSERT()
-#define PROF_1_DEASSERT()
+// Using PB6 (I2C SDA) for profiling during VUART RX operations on ATtiny261A
+// Pin is automatically switched between profiler (OUTPUT) and I2C (INPUT) modes
+// by PROFILER_ENABLE_OUTPUT() / PROFILER_RESTORE_I2C() in vUART.c
+#define PROFILER_INIT()						// No-op, pin configured on-demand
+#define PROFILER_ENABLE_OUTPUT()			DDRB |= (1 << PORTB6)				// Configure PB6 as OUTPUT for profiler
+#define PROFILER_RESTORE_I2C()				DDRB &= (uint8_t) ~(1 << PORTB6); PORTB |= (1 << PORTB6)	// Return to I2C SDA (INPUT with pullup)
+#define PROF_1_ASSERT()						PORTB |= (1 << PORTB6)
+#define PROF_1_DEASSERT()					PORTB &= (uint8_t) ~(1 << PORTB6)
 #define PROF_2_ASSERT()
 #define PROF_2_DEASSERT()
 
