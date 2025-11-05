@@ -15,7 +15,7 @@
 #include "mcp9843.h"
 #include "adc.h"
 #include "main.h"
-#include "../Shared/Shared.h"
+#include "../ModuleCPU/Shared/Shared.h"
 #include "vUART.h"
 #include <avr/sleep.h>
 #include <avr/wdt.h>

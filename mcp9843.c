@@ -14,7 +14,7 @@
 #include <avr/interrupt.h>
 #include "I2c.h"
 #include "mcp9843.h"
-#include "../Shared/Shared.h"
+#include "../ModuleCPU/Shared/Shared.h"
 
 // Slave address
 #define MCP9843_SLAVE_ADDRESS_SENSOR	0x30

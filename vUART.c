@@ -45,7 +45,7 @@
 #include "Platform.h"
 #include "vUART.h"
 #include "main.h"
-#include "../Shared/Shared.h"
+#include "../ModuleCPU/Shared/Shared.h"
 
 // States for the receive state machine
 typedef enum
@@ -132,7 +132,16 @@ ISR(PCINT_VECTOR, ISR_BLOCK)
 // Timer 0 compare A interrupt (bit clock) for cell_up_rx
 ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 {
-	TIMER_CHA_INT(VUART_BIT_TICKS-VUART_ISR_OVERHEAD);  // set this at the start to be as consistent as possible
+	// Schedule next interrupt based on state (RX needs overhead compensation, TX doesn't)
+	if (ESTATE_RX_DATA == sg_ecell_up_rxState)
+	{
+		TIMER_CHA_INT(VUART_BIT_TICKS - VUART_RX_ISR_OVERHEAD);  // RX: compensate for ISR overhead
+	}
+	else if (ESTATE_TX_DATA == sg_ecell_up_rxState)
+	{
+		TIMER_CHA_INT(VUART_BIT_TICKS - VUART_TX_ISR_OVERHEAD);  // TX: exact timing
+	}
+
 	if (ESTATE_RX_DATA == sg_ecell_up_rxState)
 	{
 		// Set the bit value for what the prior state was
@@ -295,8 +304,9 @@ ISR(TIMER_COMPA_VECTOR, ISR_BLOCK)
 ISR(TIMER_COMPB_VECTOR, ISR_BLOCK)
 {
 	bool bData;
-	
-	TIMER_CHB_INT(VUART_BIT_TICKS-VUART_ISR_OVERHEAD);  // set this at the start to be as consistent as possible
+
+	// This path is always RX (cell_dn_rx -> cell_up_tx relay), so use RX overhead compensation
+	TIMER_CHB_INT(VUART_BIT_TICKS - VUART_RX_ISR_OVERHEAD);
 		
 	// Set the bit value for what the prior state was
 	if (sg_bcell_dn_rxPriorState)
